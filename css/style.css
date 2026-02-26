@@ -1,7 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: "Sora", sans-serif;
 }
 
 body {
@@ -23,7 +27,92 @@ body {
     gap: 20px;
 }
 
+.nav-container .container .title .bolds{
+    font-weight: 500;
+    margin-left: 20px;
+}
 
+.title {
+    font-family: "Sora", sans-serif;
+    font-weight: 200;
+    margin-right: 20px;
+}
+
+/* main container  */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 60px;
+    padding: 20px;
+    border-bottom: white solid 1px;
+}
+
+.main-container .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container .container .section-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.main-container .container .lvl-container,
+.main-container .container .mode-container {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.main-container .container .lvl-container .btn,
+.main-container .container .mode-container .btn {
+    margin-left: 20px;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: white solid 1px;
+    border-radius: 8px;
+}
+
+.main-container .container .lvl-container .btn:hover,
+.main-container .container .mode-container .btn:hover {
+    color: hsl(228, 45%, 44%);
+    border-color: hsl(228, 45%, 44%);
+}
+
+.main-container .container .lvl-container .btn.clicked,
+.main-container .container .mode-container .btn.clicked {
+    color: hsl(228, 45%, 44%);
+    border-color: hsl(228, 45%, 44%);
+}
+
+.hero-content {
+    width: 80%;
+    height: 650px;
+    margin: auto;
+    overflow: auto;
+    line-height: 2;
+    font-size: 30px;
+    margin-bottom: 20px;    
+    padding: 30px;
+    border-bottom: white solid 1px;
+}
+
+.main-container .container .section-content .ty-wpm {
+    color: rgb(36, 247, 36);
+}
+
+.main-container .container .section-content .ty-accuracy {
+    color: rgb(247, 36, 36);
+}
+
+.main-container .container .section-content .ty-timer {
+    color: rgb(247, 208, 36);
+}
 
 /* Challenge By */
 .attribution {
