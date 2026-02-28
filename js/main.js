@@ -56,8 +56,14 @@ initGame();
 
 document.addEventListener("click", () => userInput.focus());
 
+// accuarcy
 let totalTyped = 0;
 let correctTyped = 0;
+
+// wpm
+let startTime;
+let timeRunning = false;
+let intervalId;
 userInput.addEventListener("input", () => {
     // e.preventDefault();
     const quote = textDisplay.querySelectorAll("span");
@@ -88,6 +94,36 @@ userInput.addEventListener("input", () => {
         document.getElementById("display-accuracy").innerText = `${accuracy}`;
     } else {
         document.getElementById("display-accuracy").innerText = "100";
+    }
+
+    // Wpm
+    if (!timeRunning && userInput.value.length > 0) {
+        startTime = new Date();
+        timeRunning = true;
+
+        intervalId = setInterval(updateStats, 1000);
+    }
+
+    function updateStats() {
+        if (!startTime) return;
+
+        const currentTime = new Date();
+        const timeInSeconds = Math.floor((currentTime - startTime) / 1000);
+        const timeInMinutes = timeInSeconds / 60;
+
+        const totalChars = userInput.value.length;
+
+        if (timeInSeconds >= 60) {
+            userInput.disabled = true;
+        }
+
+        if (timeInSeconds > 0 && totalChars > 0) {
+            const wordsCount = totalChars / 5;
+            const wpm = Math.round(wordsCount / timeInMinutes);
+
+            document.getElementById("display-wpm").innerText = wpm;
+            document.getElementById("display-timer").innerText = timeInSeconds;
+        }
     }
 });
 
