@@ -2,7 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 
 :root {
-    
+    --green-color: rgb(36, 247, 36);
+    --blue-color: hsl(228, 45%, 44%);
+    --red-color: rgb(247, 36, 36);
+    --yellow-color: rgb(247, 208, 36);
 }
 
 * {
@@ -84,14 +87,14 @@ body {
 
 .main-container .container .lvl-container .btn:hover,
 .main-container .container .mode-container .btn:hover {
-    color: hsl(228, 45%, 44%);
-    border-color: hsl(228, 45%, 44%);
+    color: var(--blue-color);
+    border-color: var(--blue-color);
 }
 
 .main-container .container .lvl-container .btn.clicked,
 .main-container .container .mode-container .btn.clicked {
-    color: hsl(228, 45%, 44%);
-    border-color: hsl(228, 45%, 44%);
+    color: var(--blue-color);
+    border-color: var(--blue-color);
 }
 
 .hero-content {
@@ -107,38 +110,33 @@ body {
 
 }
 
-
-
-
 #user-input {
     opacity: 0;
 }
 
 .main-container .container .section-content .ty-wpm {
-    color: rgb(36, 247, 36);
+    color: var(--green-color);
 }
 
 .main-container .container .section-content .ty-accuracy {
-    color: rgb(247, 36, 36);
+    color: var(--red-color);
 }
 
 .main-container .container .section-content .ty-timer {
-    color: rgb(247, 208, 36);
+    color: var(--yellow-color);
 }
-
-
 
 #text-display span {
     color: gray;
 }
 
 #text-display span.correct {
-    color:rgb(36, 247, 36);
+    color: var(--green-color);
 }
 
 #text-display span.incorrect {
     text-decoration: underline;
-    color: rgb(247, 36, 36);
+    color: var(--red-color);
 }
 
 /* modal box */
@@ -155,6 +153,23 @@ body {
     width: 100%;
     background-color: black;
     z-index: 100%;
+    position: absolute;
+}
+
+.modal .star-1 {
+    position: relative;
+    bottom: -50%;
+    left: 40%;
+}
+
+.modal .star-2 {
+    position: relative;
+    top: -10%;
+    left: -30%;
+}
+
+.modal .correctImg {
+    margin-bottom: 50px;
 }
 
 .modal .descBar {
@@ -202,7 +217,23 @@ body {
 }
 
 .modal .restart-btn:hover {
-    box-shadow: 0 0 10px rgb(36, 247, 36);
+    box-shadow: 0 0 20px var(--green-color);
+}
+
+#final-wpm {
+    color: var(--yellow-color);
+}
+
+#final-accuracy {
+    color: var(--red-color);
+}
+
+#final-cha {
+    color: var(--green-color);
+}
+
+.hidden {
+    display: none;
 }
 
 /* Challenge By */
@@ -212,5 +243,5 @@ body {
 }
 
 .attribution a {
-    color: hsl(228, 45%, 44%);
+    color: var(--blue-color);
 }

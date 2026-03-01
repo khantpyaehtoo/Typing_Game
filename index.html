@@ -23,7 +23,10 @@
             <div class="container">
                 <img src="./assets/images/icon-personal-best.svg" alt="" />
                 <span class="title"
-                    >Personal Best: <span class="bolds">67 WPM</span></span
+                    >Personal Best:
+                    <span class="bolds"
+                        ><span id="best-wpm">0</span> WPM</span
+                    ></span
                 >
             </div>
         </nav>
@@ -72,7 +75,21 @@
         <!-- modal box -->
         <section>
             <div id="result-modal" class="modal hidden">
-                <img src="./assets/images/icon-completed.svg" alt="" />
+                <img
+                    src="./assets/images/pattern-star-1.svg"
+                    alt=""
+                    class="star-1"
+                />
+                <img
+                    src="./assets/images/pattern-star-2.svg"
+                    alt=""
+                    class="star-2"
+                />
+                <img
+                    src="./assets/images/icon-completed.svg"
+                    class="correctImg"
+                />
+
                 <h1>Baseline Established!</h1>
                 <p class="descBar">
                     You've set the bar. Now the real challenge begins - time to
@@ -83,22 +100,22 @@
                     <ul class="section-content">
                         <li class="card">
                             <span class="title">WPM:</span>
-                            <h3 id="display-wpm">0</h3>
+                            <h3 id="final-wpm">0</h3>
                         </li>
                         <li class="card">
                             <span class="title">Accuracy: </span>
-                            <h3 id="display-accuracy">100</h3>
+                            <h3 id="final-accuracy">100</h3>
                         </li>
                         <li class="card">
-                            <span class="title">Time: </span>
-                            <h3 id="display-timer">0</h3>
+                            <span class="title">Characters: </span>
+                            <h3 id="final-cha"></h3>
                         </li>
                     </ul>
                 </div>
 
-                <button class="restart-btn">
+                <button class="restart-btn" id="re-btn">
                     Beat This Score
-                    <img src="./assets/images/icon-restart.svg" alt="" />
+                    <img src="./assets/images/icon-restart.svg" />
                 </button>
             </div>
         </section>
