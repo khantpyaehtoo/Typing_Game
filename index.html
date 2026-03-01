@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
+        <!-- top nav section -->
         <nav class="nav-container">
             <img src="./assets/images/logo-large.svg" alt="" />
             <div class="container">
@@ -27,6 +28,7 @@
             </div>
         </nav>
 
+        <!-- selector section -->
         <main class="main-container">
             <div class="container">
                 <ul class="section-content">
@@ -61,20 +63,52 @@
             </div>
         </main>
 
+        <!-- Typing section -->
         <section class="hero-content">
             <div id="text-display" class="container"></div>
             <input type="text" id="user-input" autofocus />
         </section>
 
-        <!-- 
+        <!-- modal box -->
         <section>
-            <h4>Start Typing Test Or click the text and start typing</h4>
+            <div id="result-modal" class="modal hidden">
+                <img src="./assets/images/icon-completed.svg" alt="" />
+                <h1>Baseline Established!</h1>
+                <p class="descBar">
+                    You've set the bar. Now the real challenge begins - time to
+                    beat it.
+                </p>
+
+                <div class="container">
+                    <ul class="section-content">
+                        <li class="card">
+                            <span class="title">WPM:</span>
+                            <h3 id="display-wpm">0</h3>
+                        </li>
+                        <li class="card">
+                            <span class="title">Accuracy: </span>
+                            <h3 id="display-accuracy">100</h3>
+                        </li>
+                        <li class="card">
+                            <span class="title">Time: </span>
+                            <h3 id="display-timer">0</h3>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="restart-btn">
+                    Beat This Score
+                    <img src="./assets/images/icon-restart.svg" alt="" />
+                </button>
+            </div>
+        </section>
+
+        <!-- <h4>Start Typing Test Or click the text and start typing</h4>
             <h4>
                 Test Complete! Solid run. Keep pushing to beat your high score.
                 WPM:
             </h4>
-            <h4>Accuracy: Characters: Go Again</h4>
-        </section> -->
+            <h4>Accuracy: Characters: Go Again</h4> -->
 
         <div class="attribution">
             Challenge by
