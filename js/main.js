@@ -7,7 +7,7 @@ let timeRunning = false;
 let intervalId;
 let currentLevel = "medium";
 
-// --- ၁။ API Fetch Logic ---
+// --- API Fetch Logic ---
 const fetchApi = async (lvl) => {
     try {
         const res = await fetch(`http://localhost:3001/${lvl}`);
@@ -22,7 +22,7 @@ const initGame = async (lvl = "medium") => {
     const data = await fetchApi(lvl);
     if (data) {
         textDisplay.innerHTML = "";
-        userInput.value = ""; // စာဟောင်းတွေ ရှင်းမယ်
+        userInput.value = "";
         data.split("").forEach((char) => {
             const span = document.createElement("span");
             span.innerText = char;
@@ -62,13 +62,14 @@ function showResult() {
     document.getElementById("final-wpm").innerText = wpm;
     document.getElementById("best-wpm").innerText = wpm;
     document.getElementById("final-accuracy").innerText = accuracy;
-    document.getElementById("final-cha").innerText = quoteLen;
+    document.getElementById("final-cha").innerText =
+        `${quoteLen} / ${userInput.value.length}`;
 
     document.getElementById("result-modal").classList.remove("hidden");
 }
 
 function resetStats() {
-    clearInterval(intervalId); // Timer အဟောင်းရပ်မယ်
+    clearInterval(intervalId);
     timeRunning = false;
     startTime = null;
     userInput.disabled = false;
