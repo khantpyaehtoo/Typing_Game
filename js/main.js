@@ -6,11 +6,20 @@ let startTime;
 let timeRunning = false;
 let intervalId;
 let currentLevel = "medium";
+let currentMode = "timed";
 
 // --- API Fetch Logic ---
 const fetchApi = async (lvl) => {
+    let url;
+
+    if (currentMode === "passage") {
+        url = `http://localhost:3001/passage`;
+    } else {
+        url = `http://localhost:3001/${lvl}`;
+    }
+
     try {
-        const res = await fetch(`http://localhost:3001/${lvl}`);
+        const res = await fetch(url);
         const data = await res.json();
         return data[Math.floor(Math.random() * data.length)].text;
     } catch (error) {
@@ -39,10 +48,12 @@ function updateStats() {
     const timeInMinutes = timeInSeconds / 60;
     const totalChars = userInput.value.length;
 
-    if (timeInSeconds >= 60) {
+    if (currentMode === "timed" && timeInSeconds >= 60) {
         showResult();
         return;
     }
+
+    document.getElementById("display-timer").innerText = timeInSeconds;
 
     if (timeInSeconds > 0 && totalChars > 0) {
         const wpm = Math.round(totalChars / 5 / timeInMinutes);
@@ -92,6 +103,22 @@ diffBtns.forEach((btn) => {
     });
 });
 
+// Mode Buttons
+let modeBtns = document.querySelectorAll(".mode-btn");
+modeBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modeBtns.forEach((b) => b.classList.remove("clicked"));
+        btn.classList.add("clicked");
+        currentMode = btn.innerText.toLowerCase().includes("timed")
+            ? "timed"
+            : "passage";
+
+        resetStats();
+        initGame(currentLevel);
+    });
+});
+
 // Restart Button
 document.getElementById("re-btn").addEventListener("click", () => {
     document.getElementById("result-modal").classList.add("hidden");
@@ -114,6 +141,8 @@ userInput.addEventListener("input", () => {
     let currentCorrect = 0;
     quote.forEach((charSpan, index) => {
         const char = value[index];
+        charSpan.classList.remove("active");
+
         if (char == null) {
             charSpan.classList.remove("correct", "incorrect");
         } else if (char === charSpan.innerText) {
@@ -126,6 +155,18 @@ userInput.addEventListener("input", () => {
         }
     });
 
+    // Active Highlight and auto-scroll logic
+    const activeIndex = value.length;
+    if (activeIndex < quote.length) {
+        const activeSpan = quote[activeIndex];
+        activeSpan.classList.add("active");
+
+        activeSpan.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
+    }
+
     // Accuracy
     if (value.length > 0) {
         const accuracy = Math.floor((currentCorrect / value.length) * 100);
@@ -135,6 +176,14 @@ userInput.addEventListener("input", () => {
     // End of Quote Check
     if (value.length === quote.length) {
         showResult();
+    }
+
+    if (value.length === quote.length) {
+        if (currentMode === "passage") {
+            showResult();
+        } else {
+            initGame(currentLevel);
+        }
     }
 });
 

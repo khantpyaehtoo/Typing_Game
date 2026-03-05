@@ -126,6 +126,43 @@ body {
     color: var(--yellow-color);
 }
 
+#text-display::-webkit-scrollbar {
+    width: 10px;              
+}
+
+#text-display::-webkit-scrollbar-track {
+    background: #1e1e1e;     
+    border-radius: 10px;       }
+
+#text-display::-webkit-scrollbar-thumb {
+    background: #4a4a4a; 
+    border-radius: 10px;
+    border: 2px solid #1e1e1e;
+}
+
+#text-display::-webkit-scrollbar-thumb:hover {
+    background: #ffd700;      
+}
+
+/* for firebox */
+#text-display {
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a #1e1e1e;
+}
+
+#text-display {
+    max-height: 450px; 
+    overflow-y: auto; 
+    position: relative;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+.active {
+    background-color: #4a4a4a;
+    border-bottom: 2px solid #ffd700;
+}
+
 #text-display span {
     color: gray;
 }
