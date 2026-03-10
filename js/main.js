@@ -1,29 +1,34 @@
+import { doc } from "@firebase/firestore";
+import { db } from "../firebase/config";
+
 const textDisplay = document.getElementById("text-display");
 const userInput = document.getElementById("user-input");
 
 // Global Variables
+let personBestWpm = 0;
 let startTime;
 let timeRunning = false;
 let intervalId;
 let currentLevel = "medium";
 let currentMode = "timed";
 
-// --- API Fetch Logic ---
+// API Fetch Logic
 const fetchApi = async (lvl) => {
-    let url;
-
-    if (currentMode === "passage") {
-        url = `http://localhost:3001/passage`;
-    } else {
-        url = `http://localhost:3001/${lvl}`;
-    }
+    const docRef = doc(db, "data", lvl);
 
     try {
-        const res = await fetch(url);
-        const data = await res.json();
-        return data[Math.floor(Math.random() * data.length)].text;
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            personBestWpm = data.personBestWpm || 0;
+
+            document.getElementById("best-wpm").innerText = personBestWpm;
+
+            const passages = data.passages;
+            return passages[Math.floor(Math.random() * passages.length)];
+        }
     } catch (error) {
-        console.error("error at fetching api", error);
+        console.error("firebase fetch error: ", error);
     }
 };
 
@@ -62,13 +67,26 @@ function updateStats() {
     }
 }
 
-function showResult() {
+async function showResult() {
     clearInterval(intervalId);
     userInput.disabled = true;
 
     const wpm = document.getElementById("display-wpm").innerText;
     const accuracy = document.getElementById("display-accuracy").innerText;
     const quoteLen = textDisplay.querySelectorAll("span").length;
+
+    if (wpm > personBestWpm) {
+        const docRef = doc(db, "data", currentLevel);
+        try {
+            await updateDoc(docRef, {
+                personalBestWpm: wpm,
+            });
+            personalBestWpm = wpm;
+            alert("🎉 New Personal Best Saved!");
+        } catch (err) {
+            console.error("Error updating PB:", err);
+        }
+    }
 
     document.getElementById("final-wpm").innerText = wpm;
     document.getElementById("best-wpm").innerText = wpm;
