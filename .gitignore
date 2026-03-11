@@ -39,6 +39,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-config.js
-node_modules/
-.env
+# config.js
+# node_modules/
+# .env
