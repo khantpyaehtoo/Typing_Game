@@ -83,7 +83,7 @@ async function showResult() {
     const accuracy = document.getElementById("display-accuracy").innerText;
     const quoteLen = textDisplay.querySelectorAll("span").length;
 
-    const pbKey = `pb_${lvl}`;
+    const pbKey = `pb_${currentLevel}`;
     let savedPB = parseInt(localStorage.getItem(pbKey)) || 0;
 
     // if (wpm > personalBestWpm) {
