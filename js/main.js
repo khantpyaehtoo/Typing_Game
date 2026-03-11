@@ -90,7 +90,7 @@ async function showResult() {
                 personalBestWpm: wpm,
             });
             personalBestWpm = wpm;
-            alert("🎉 New Personal Best Saved!");
+            alert("🎉 New Global Best Saved!");
         } catch (err) {
             console.error("Error updating PB:", err);
         }
