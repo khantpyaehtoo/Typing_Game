@@ -1,11 +1,15 @@
-import { doc } from "@firebase/firestore";
-import { db } from "../firebase/config";
+import {
+    doc,
+    getDoc,
+    updateDoc,
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { db } from "../config.js";
 
 const textDisplay = document.getElementById("text-display");
 const userInput = document.getElementById("user-input");
 
 // Global Variables
-let personBestWpm = 0;
+let personalBestWpm = 0;
 let startTime;
 let timeRunning = false;
 let intervalId;
@@ -14,18 +18,22 @@ let currentMode = "timed";
 
 // API Fetch Logic
 const fetchApi = async (lvl) => {
+    if (!lvl) {
+        console.error("Level is missing");
+        return;
+    }
     const docRef = doc(db, "data", lvl);
 
     try {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             const data = docSnap.data();
-            personBestWpm = data.personBestWpm || 0;
-
-            document.getElementById("best-wpm").innerText = personBestWpm;
-
-            const passages = data.passages;
-            return passages[Math.floor(Math.random() * passages.length)];
+            const passages = data.text;
+            const randomIndex = Math.floor(Math.random() * passages.length);
+            const selectedStory = passages[randomIndex];
+            personalBestWpm = data.personalBestWpm || 0;
+            document.getElementById("best-wpm").innerText = personalBestWpm;
+            return selectedStory;
         }
     } catch (error) {
         console.error("firebase fetch error: ", error);
@@ -75,7 +83,7 @@ async function showResult() {
     const accuracy = document.getElementById("display-accuracy").innerText;
     const quoteLen = textDisplay.querySelectorAll("span").length;
 
-    if (wpm > personBestWpm) {
+    if (wpm > personalBestWpm) {
         const docRef = doc(db, "data", currentLevel);
         try {
             await updateDoc(docRef, {
@@ -181,7 +189,7 @@ userInput.addEventListener("input", () => {
 
         activeSpan.scrollIntoView({
             behavior: "smooth",
-            block: "center",
+            block: "nearest",
         });
     }
 
