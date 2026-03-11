@@ -293,7 +293,7 @@ body {
     }
 
     .main-container {
-        flex-direction: column;
+        flex-direction: column-reverse;
         margin: 10px 20px;
         padding: 15px;
         gap: 20px;
@@ -313,7 +313,7 @@ body {
     .main-container .container .lvl-container,
     .main-container .container .mode-container {
         margin-left: 0;
-        margin-top: 20px;
+        margin-bottom: 20px;
         justify-content: center;
         width: 100%;
     }
@@ -356,17 +356,16 @@ body {
         font-size: 12px;
     }
 
-    /* Modal တစ်ခုလုံးကို screen နဲ့ တော်အောင် ညှိမယ် */
     .modal {
         padding: 20px;
         text-align: center;
-        overflow-y: auto; /* စာသားတွေ များနေရင် scroll ဆွဲလို့ရအောင် */
-        justify-content: flex-start; /* ဖုန်းမှာဆို ထိပ်ကနေ စီတာ ပိုကောင်းတယ် */
+        overflow-y: auto; 
+        justify-content: flex-start;
         padding-top: 50px;
     }
 
     .modal h1 {
-        font-size: 24px; /* ခေါင်းစဉ်ကို သေးလိုက်မယ် */
+        font-size: 24px; 
         margin-bottom: 10px;
     }
 
@@ -375,7 +374,6 @@ body {
         padding: 0 20px;
     }
 
-    /* WPM, Accuracy Card လေးတွေကို အပေါ်အောက် စီမယ် */
     .modal .container .section-content {
         flex-direction: column;
         gap: 15px;
@@ -384,16 +382,15 @@ body {
     }
 
     .modal .container .section-content .card {
-        width: 100%; /* ဖုန်းမှာ card ကို အပြည့်ယူမယ် */
-        max-width: 250px; /* ဒါပေမဲ့ အရမ်းကြီးမသွားအောင် ကန့်သတ်မယ် */
+        width: 100%;
+        max-width: 250px; 
         margin: 0 auto;
         height: auto;
         padding: 15px;
     }
 
-    /* ကြယ်ပွင့် (Stars) လေးတွေကို ဖုန်းမှာ ဖျောက်ထားတာ ဒါမှမဟုတ် နေရာရွှေ့တာ ပိုကောင်းတယ် */
     .modal .star-1, .modal .star-2 {
-        display: none; /* Layout ရှုပ်မှာစိုးရင် ဖျောက်ထားလိုက်ပါ */
+        display: none; 
     }
 
     .modal .correctImg {
