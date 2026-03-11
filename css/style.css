@@ -282,3 +282,128 @@ body {
 .attribution a {
     color: var(--blue-color);
 }
+
+@media screen and (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        margin: 10px 20px;
+        padding: 10px;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .main-container {
+        flex-direction: column;
+        margin: 10px 20px;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .main-container .container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-container .container .section-content {
+        gap: 15px;
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    .main-container .container .lvl-container,
+    .main-container .container .mode-container {
+        margin-left: 0;
+        margin-top: 20px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .hero-content {
+        width: 95%;
+        height: auto; 
+        min-height: 300px;
+        max-height: 400px;
+        font-size: 20px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+
+    .modal .container .section-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal .container .section-content .card {
+        width: 80%;
+        margin: 5px 0;
+    }
+
+    .modal .correctImg {
+        width: 100px;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-content {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+    
+    .main-container .container .lvl-container .btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    /* Modal တစ်ခုလုံးကို screen နဲ့ တော်အောင် ညှိမယ် */
+    .modal {
+        padding: 20px;
+        text-align: center;
+        overflow-y: auto; /* စာသားတွေ များနေရင် scroll ဆွဲလို့ရအောင် */
+        justify-content: flex-start; /* ဖုန်းမှာဆို ထိပ်ကနေ စီတာ ပိုကောင်းတယ် */
+        padding-top: 50px;
+    }
+
+    .modal h1 {
+        font-size: 24px; /* ခေါင်းစဉ်ကို သေးလိုက်မယ် */
+        margin-bottom: 10px;
+    }
+
+    .modal .descBar {
+        font-size: 14px;
+        padding: 0 20px;
+    }
+
+    /* WPM, Accuracy Card လေးတွေကို အပေါ်အောက် စီမယ် */
+    .modal .container .section-content {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0;
+    }
+
+    .modal .container .section-content .card {
+        width: 100%; /* ဖုန်းမှာ card ကို အပြည့်ယူမယ် */
+        max-width: 250px; /* ဒါပေမဲ့ အရမ်းကြီးမသွားအောင် ကန့်သတ်မယ် */
+        margin: 0 auto;
+        height: auto;
+        padding: 15px;
+    }
+
+    /* ကြယ်ပွင့် (Stars) လေးတွေကို ဖုန်းမှာ ဖျောက်ထားတာ ဒါမှမဟုတ် နေရာရွှေ့တာ ပိုကောင်းတယ် */
+    .modal .star-1, .modal .star-2 {
+        display: none; /* Layout ရှုပ်မှာစိုးရင် ဖျောက်ထားလိုက်ပါ */
+    }
+
+    .modal .correctImg {
+        width: 80px;
+        margin-bottom: 20px;
+    }
+
+    .modal .restart-btn {
+        width: 100%;
+        max-width: 250px;
+        margin-top: 30px;
+    }
+}

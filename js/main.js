@@ -79,33 +79,25 @@ async function showResult() {
     clearInterval(intervalId);
     userInput.disabled = true;
 
-    const wpm = parseInt(document.getElementById("display-wpm").innerText);
+    const wpm = document.getElementById("display-wpm").innerText;
     const accuracy = document.getElementById("display-accuracy").innerText;
     const quoteLen = textDisplay.querySelectorAll("span").length;
 
-    const pbKey = `pb_${currentLevel}`;
-    let savedPB = parseInt(localStorage.getItem(pbKey)) || 0;
-
-    // if (wpm > personalBestWpm) {
-    //     const docRef = doc(db, "data", currentLevel);
-    //     try {
-    //         await updateDoc(docRef, {
-    //             personalBestWpm: wpm,
-    //         });
-    //         personalBestWpm = wpm;
-    //         alert("🎉 New Personal Best Saved!");
-    //     } catch (err) {
-    //         console.error("Error updating PB:", err);
-    //     }
-    // }
-
-    if (wpm > savedPB) {
-        localStorage.setItem(pbKey, wpm);
-        savedPB = wpm;
+    if (wpm > personalBestWpm) {
+        const docRef = doc(db, "data", currentLevel);
+        try {
+            await updateDoc(docRef, {
+                personalBestWpm: wpm,
+            });
+            personalBestWpm = wpm;
+            alert("🎉 New Personal Best Saved!");
+        } catch (err) {
+            console.error("Error updating PB:", err);
+        }
     }
 
     document.getElementById("final-wpm").innerText = wpm;
-    document.getElementById("best-wpm").innerText = savedPB;
+    document.getElementById("best-wpm").innerText = wpm;
     document.getElementById("final-accuracy").innerText = accuracy;
     document.getElementById("final-cha").innerText =
         `${quoteLen} / ${userInput.value.length}`;
